@@ -22,6 +22,8 @@ def fetch_news(stock_name):
     url = f"https://gnews.io/api/v4/search?q={stock_name}&lang=en&token={API_KEY}"
     response = requests.get(url)
     data = response.json()
+    for article in data.get('articles', []):
+    print(article['title'], '|', article['source']['name'])
     
     results = []
     for article in data.get('articles', []):
