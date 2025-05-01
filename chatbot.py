@@ -82,10 +82,13 @@ def is_quality_news(title, description, source):
 
 # ✅ Fetch News Function
 def fetch_news(stock_name):
-    API_KEY = 'da02e13257b03fb0e6f8f013d6e36ba4'  # Replace with your own key if needed
-    url = f"https://gnews.io/api/v4/search?q={stock_name}&lang=en&token={API_KEY}"
+    API_KEY = 'your_api_key_here'
+    url = f"https://gnews.io/api/v4/search?q={stock_name}&lang=en&country=in&max=10&token={API_KEY}"
     response = requests.get(url)
     data = response.json()
+    
+    # Display API response for debugging
+    st.write("API Raw Response:", data)
 
     results = []
     for article in data.get('articles', []):
@@ -95,9 +98,9 @@ def fetch_news(stock_name):
         source = article.get('source', {}).get('name', '')
         time = article.get('publishedAt', '')
 
-        if is_quality_news(title, desc, source):
-            return True 
-            results.append((title, link, source, time))
+        # Just show everything for now
+        results.append((title, desc, link, source, time))
+    
     return results
 
 # ✅ Streamlit UI
