@@ -82,7 +82,7 @@ def is_quality_news(title, description, source):
 
 # ✅ Fetch News Function
 def fetch_news(stock_name):
-    API_KEY = 'your_api_key_here'
+    API_KEY = 'da02e13257b03fb0e6f8f013d6e36ba4'
     url = f"https://gnews.io/api/v4/search?q={stock_name}&lang=en&country=in&max=10&token={API_KEY}"
     response = requests.get(url)
     data = response.json()
