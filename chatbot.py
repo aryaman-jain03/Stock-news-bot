@@ -45,8 +45,25 @@ def is_quality_news(title, description, source):
     'crisil', 'moodys', 'investment by fii', 'investment by dii'
 ]
     noise_keywords = ['should you buy', 'top stocks', 'analyst', 'recommendation']
-    trusted_sources = ['NDTV', 'Moneycontrol', 'Business Standard', 'Economic Times', 'Reuters', 'CNBC']
-
+    trusted_sources = [
+    # Indian financial media
+    'Moneycontrol', 'Economic Times', 'ETMarkets', 'Business Standard',
+    'LiveMint', 'CNBC TV18', 'Zee Business', 'NDTV Profit', 'Financial Express',
+    'BloombergQuint', 'Hindu Business Line', 'Times of India', 'Business Today',
+    
+    # Global financial media
+    'Reuters', 'Bloomberg', 'Yahoo Finance', 'CNBC', 'Forbes', 'Wall Street Journal',
+    'Investing.com', 'Nasdaq', 'MarketWatch', 'Barron\'s', 'FT', 'Seeking Alpha',
+    
+    # Official and regulatory
+    'SEBI', 'BSE India', 'NSE India', 'RBI', 'MoFPI', 'Gov.in', 'PIB India',
+    
+    # Ratings & analytics
+    'CRISIL', 'ICRA', 'Care Ratings', 'Fitch', 'Moody\'s', 'S&P Global',
+    
+    # International business sites (optional)
+    'Business Insider', 'The Economist', 'The Guardian Business', 'BBC Business'
+]
     text = f"{title} {description}".lower()
     return (
         any(k in text for k in quality_keywords)
