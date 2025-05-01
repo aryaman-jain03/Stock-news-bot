@@ -6,7 +6,44 @@ st.title("📢 Quality Stock News Bot")
 st.write("Get real-time, quality financial news. Powered by GNews API.")
 
 def is_quality_news(title, description, source):
-    quality_keywords = ['results', 'q1', 'q2', 'q3', 'q4', 'revenue', 'profit', 'dividend', 'net income', 'eps']
+    quality_keywords = [
+    # Earnings & Performance
+    'results', 'q1', 'q2', 'q3', 'q4', 'quarterly',
+    'financials', 'revenue', 'profit', 'loss', 'net loss',
+    'net income', 'earnings', 'eps', 'ebitda',
+    'net profit', 'gross profit', 'operating profit', 'operating income',
+    'margins', 'margin', 'topline', 'bottomline', 'income statement',
+    
+    # Growth & Forecasts
+    'growth', 'forecast', 'guidance', 'projection', 'outlook',
+    'expectation', 'estimates', 'expansion', 'scaling',
+    
+    # Announcements & Strategic Moves
+    'dividend', 'payout', 'bonus issue', 'stock split',
+    'merger', 'acquisition', 'joint venture', 'buyback', 'ipo',
+    'fpo', 'spin off', 'listing', 'fundraising', 'allotment',
+    
+    # Operational Updates
+    'business update', 'performance update', 'plant commissioning',
+    'product launch', 'capacity expansion', 'ramp up', 'options',
+    
+    # Financial Events & Filings
+    'board meeting', 'agm', 'egm', 'regulatory filing', 'press release',
+    'shareholding pattern', 'annual report', 'investor presentation',
+    'filing with sebi', 'announcement to bse', 'stock exchange filing',
+    
+    # Debt, Capital, Liquidity
+    'debt', 'capital expenditure', 'capex', 'cash flow',
+    'interest coverage', 'leverage', 'fund infusion', 'liquidity',
+    
+    # Compliance & Governance
+    'shareholder', 'board resolution', 'audit report',
+    'corporate action', 'disclosure', 'corporate governance',
+    
+    # Ratings & Institutional Activity
+    'credit rating', 'upgrade', 'downgrade', 'fitch', 'care ratings',
+    'crisil', 'moodys', 'investment by fii', 'investment by dii'
+]
     noise_keywords = ['should you buy', 'top stocks', 'analyst', 'recommendation']
     trusted_sources = ['NDTV', 'Moneycontrol', 'Business Standard', 'Economic Times', 'Reuters', 'CNBC']
 
@@ -22,8 +59,7 @@ def fetch_news(stock_name):
     url = f"https://gnews.io/api/v4/search?q={stock_name}&lang=en&token={API_KEY}"
     response = requests.get(url)
     data = response.json()
-    for article in data.get('articles', []):
-    print(article['title'], '|', article['source']['name'])
+  
     
     results = []
     for article in data.get('articles', []):
