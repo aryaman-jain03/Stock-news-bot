@@ -89,13 +89,14 @@ def fetch_news(stock_name):
 
     results = []
     for article in data.get('articles', []):
-        title = article.get('title')
-        desc = article.get('description')
-        link = article.get('url')
+        title = article.get('title', '')
+        desc = article.get('description', '')
+        link = article.get('url', '')
         source = article.get('source', {}).get('name', '')
         time = article.get('publishedAt', '')
 
         if is_quality_news(title, desc, source):
+            return True 
             results.append((title, link, source, time))
     return results
 
